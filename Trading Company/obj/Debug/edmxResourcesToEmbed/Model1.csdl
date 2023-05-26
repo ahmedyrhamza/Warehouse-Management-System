@@ -1,0 +1,478 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="Client_ID" />
+    </Key>
+    <Property Name="Client_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Client_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Client_Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Client_Fax" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Client_Mobile" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Client_Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Client_WebSite" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Wh_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Warehouse" Relationship="Self.FK__Client__Wh_Name__2C3393D0" FromRole="Client" ToRole="Warehouse" />
+    <NavigationProperty Name="Exchange_Notice" Relationship="Self.FK_Exchange_Notice_Client" FromRole="Client" ToRole="Exchange_Notice" />
+  </EntityType>
+  <EntityType Name="Exchange_Notice">
+    <Key>
+      <PropertyRef Name="EN_ID" />
+    </Key>
+    <Property Name="EN_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Wh_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EN_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Client_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Client" Relationship="Self.FK_Exchange_Notice_Client" FromRole="Exchange_Notice" ToRole="Client" />
+    <NavigationProperty Name="Exchange_Notice_Item" Relationship="Self.FK__Exchange___EN_ID__5BE2A6F2" FromRole="Exchange_Notice" ToRole="Exchange_Notice_Item" />
+    <NavigationProperty Name="Warehouse" Relationship="Self.FK__Exchange___Wh_Na__38996AB5" FromRole="Exchange_Notice" ToRole="Warehouse" />
+  </EntityType>
+  <EntityType Name="Exchange_Notice_Item">
+    <Key>
+      <PropertyRef Name="EN_ID" />
+      <PropertyRef Name="It_Code" />
+    </Key>
+    <Property Name="EN_ID" Type="Int32" Nullable="false" />
+    <Property Name="It_Code" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Exchange_Notice" Relationship="Self.FK__Exchange___EN_ID__5BE2A6F2" FromRole="Exchange_Notice_Item" ToRole="Exchange_Notice" />
+    <NavigationProperty Name="Item" Relationship="Self.FK__Exchange___It_Co__5CD6CB2B" FromRole="Exchange_Notice_Item" ToRole="Item" />
+  </EntityType>
+  <EntityType Name="Item">
+    <Key>
+      <PropertyRef Name="It_Code" />
+    </Key>
+    <Property Name="It_Code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="It_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Wh_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Amount" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Exchange_Notice_Item" Relationship="Self.FK__Exchange___It_Co__5CD6CB2B" FromRole="Item" ToRole="Exchange_Notice_Item" />
+    <NavigationProperty Name="Warehouse" Relationship="Self.FK__Item__Wh_Name__267ABA7A" FromRole="Item" ToRole="Warehouse" />
+    <NavigationProperty Name="Item_Unit" Relationship="Self.FK__Item_Unit__It_Co__29572725" FromRole="Item" ToRole="Item_Unit" />
+    <NavigationProperty Name="Supply_Notice_Item" Relationship="Self.FK__Supply_No__It_Co__4E88ABD4" FromRole="Item" ToRole="Supply_Notice_Item" />
+    <NavigationProperty Name="Transfer_Item" Relationship="Self.FK__Transfer___It_Co__73BA3083" FromRole="Item" ToRole="Transfer_Item" />
+  </EntityType>
+  <EntityType Name="Item_Unit">
+    <Key>
+      <PropertyRef Name="It_Code" />
+      <PropertyRef Name="It_Unit" />
+    </Key>
+    <Property Name="It_Code" Type="Int32" Nullable="false" />
+    <Property Name="It_Unit" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Item" Relationship="Self.FK__Item_Unit__It_Co__29572725" FromRole="Item_Unit" ToRole="Item" />
+  </EntityType>
+  <EntityType Name="Supplier">
+    <Key>
+      <PropertyRef Name="Supplier_ID" />
+    </Key>
+    <Property Name="Supplier_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Supplier_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Supplier_Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Supplier_Fax" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Supplier_Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Supplier_Mobile" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Supplier_WebSite" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Supply_Notice" Relationship="Self.FK__Supply_No__Suppl__31EC6D26" FromRole="Supplier" ToRole="Supply_Notice" />
+    <NavigationProperty Name="Warehouses" Relationship="Self.Warehouse_Supplier" FromRole="Supplier" ToRole="Warehouse" />
+  </EntityType>
+  <EntityType Name="Supply_Notice">
+    <Key>
+      <PropertyRef Name="SN_ID" />
+    </Key>
+    <Property Name="SN_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Wh_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SN_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Supplier_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Supplier" Relationship="Self.FK__Supply_No__Suppl__31EC6D26" FromRole="Supply_Notice" ToRole="Supplier" />
+    <NavigationProperty Name="Supply_Notice_Item" Relationship="Self.FK__Supply_No__SN_ID__4D94879B" FromRole="Supply_Notice" ToRole="Supply_Notice_Item" />
+    <NavigationProperty Name="Warehouse" Relationship="Self.FK__Supply_No__Wh_Na__30F848ED" FromRole="Supply_Notice" ToRole="Warehouse" />
+  </EntityType>
+  <EntityType Name="Supply_Notice_Item">
+    <Key>
+      <PropertyRef Name="SN_ID" />
+      <PropertyRef Name="It_Code" />
+    </Key>
+    <Property Name="SN_ID" Type="Int32" Nullable="false" />
+    <Property Name="It_Code" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Int32" Nullable="false" />
+    <Property Name="Expiry_Date" Type="DateTime" Precision="0" />
+    <Property Name="Production_Date" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Item" Relationship="Self.FK__Supply_No__It_Co__4E88ABD4" FromRole="Supply_Notice_Item" ToRole="Item" />
+    <NavigationProperty Name="Supply_Notice" Relationship="Self.FK__Supply_No__SN_ID__4D94879B" FromRole="Supply_Notice_Item" ToRole="Supply_Notice" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Transfer_Item">
+    <Key>
+      <PropertyRef Name="From_Wh_Name" />
+      <PropertyRef Name="To_Wh_Name" />
+      <PropertyRef Name="It_Code" />
+    </Key>
+    <Property Name="From_Wh_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="To_Wh_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="It_Code" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Int32" Nullable="false" />
+    <Property Name="Expiry_Date" Type="DateTime" Precision="0" />
+    <Property Name="Production_Date" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Item" Relationship="Self.FK__Transfer___It_Co__73BA3083" FromRole="Transfer_Item" ToRole="Item" />
+    <NavigationProperty Name="Warehouse" Relationship="Self.FK__Transfer___From___71D1E811" FromRole="Transfer_Item" ToRole="Warehouse" />
+    <NavigationProperty Name="Warehouse1" Relationship="Self.FK__Transfer___To_Wh__72C60C4A" FromRole="Transfer_Item" ToRole="Warehouse" />
+  </EntityType>
+  <EntityType Name="Warehouse">
+    <Key>
+      <PropertyRef Name="Wh_Name" />
+    </Key>
+    <Property Name="Wh_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Wh_Address" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Wh_Manager" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Clients" Relationship="Self.FK__Client__Wh_Name__2C3393D0" FromRole="Warehouse" ToRole="Client" />
+    <NavigationProperty Name="Exchange_Notice" Relationship="Self.FK__Exchange___Wh_Na__38996AB5" FromRole="Warehouse" ToRole="Exchange_Notice" />
+    <NavigationProperty Name="Items" Relationship="Self.FK__Item__Wh_Name__267ABA7A" FromRole="Warehouse" ToRole="Item" />
+    <NavigationProperty Name="Supply_Notice" Relationship="Self.FK__Supply_No__Wh_Na__30F848ED" FromRole="Warehouse" ToRole="Supply_Notice" />
+    <NavigationProperty Name="Transfer_Item" Relationship="Self.FK__Transfer___From___71D1E811" FromRole="Warehouse" ToRole="Transfer_Item" />
+    <NavigationProperty Name="Transfer_Item1" Relationship="Self.FK__Transfer___To_Wh__72C60C4A" FromRole="Warehouse" ToRole="Transfer_Item" />
+    <NavigationProperty Name="Suppliers" Relationship="Self.Warehouse_Supplier" FromRole="Warehouse" ToRole="Supplier" />
+  </EntityType>
+  <Association Name="FK__Client__Wh_Name__2C3393D0">
+    <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Client" Type="Self.Client" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Warehouse">
+        <PropertyRef Name="Wh_Name" />
+      </Principal>
+      <Dependent Role="Client">
+        <PropertyRef Name="Wh_Name" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Exchange_Notice_Client">
+    <End Role="Client" Type="Self.Client" Multiplicity="1" />
+    <End Role="Exchange_Notice" Type="Self.Exchange_Notice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Client_ID" />
+      </Principal>
+      <Dependent Role="Exchange_Notice">
+        <PropertyRef Name="Client_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Exchange___EN_ID__5BE2A6F2">
+    <End Role="Exchange_Notice" Type="Self.Exchange_Notice" Multiplicity="1" />
+    <End Role="Exchange_Notice_Item" Type="Self.Exchange_Notice_Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Exchange_Notice">
+        <PropertyRef Name="EN_ID" />
+      </Principal>
+      <Dependent Role="Exchange_Notice_Item">
+        <PropertyRef Name="EN_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Exchange___Wh_Na__38996AB5">
+    <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Exchange_Notice" Type="Self.Exchange_Notice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Warehouse">
+        <PropertyRef Name="Wh_Name" />
+      </Principal>
+      <Dependent Role="Exchange_Notice">
+        <PropertyRef Name="Wh_Name" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Exchange___It_Co__5CD6CB2B">
+    <End Role="Item" Type="Self.Item" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Exchange_Notice_Item" Type="Self.Exchange_Notice_Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="It_Code" />
+      </Principal>
+      <Dependent Role="Exchange_Notice_Item">
+        <PropertyRef Name="It_Code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Item__Wh_Name__267ABA7A">
+    <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Item" Type="Self.Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Warehouse">
+        <PropertyRef Name="Wh_Name" />
+      </Principal>
+      <Dependent Role="Item">
+        <PropertyRef Name="Wh_Name" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Item_Unit__It_Co__29572725">
+    <End Role="Item" Type="Self.Item" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Item_Unit" Type="Self.Item_Unit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="It_Code" />
+      </Principal>
+      <Dependent Role="Item_Unit">
+        <PropertyRef Name="It_Code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Supply_No__It_Co__4E88ABD4">
+    <End Role="Item" Type="Self.Item" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Supply_Notice_Item" Type="Self.Supply_Notice_Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="It_Code" />
+      </Principal>
+      <Dependent Role="Supply_Notice_Item">
+        <PropertyRef Name="It_Code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transfer___It_Co__73BA3083">
+    <End Role="Item" Type="Self.Item" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Transfer_Item" Type="Self.Transfer_Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="It_Code" />
+      </Principal>
+      <Dependent Role="Transfer_Item">
+        <PropertyRef Name="It_Code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Supply_No__Suppl__31EC6D26">
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Supply_Notice" Type="Self.Supply_Notice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="Supplier_ID" />
+      </Principal>
+      <Dependent Role="Supply_Notice">
+        <PropertyRef Name="Supplier_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Supply_No__SN_ID__4D94879B">
+    <End Role="Supply_Notice" Type="Self.Supply_Notice" Multiplicity="1" />
+    <End Role="Supply_Notice_Item" Type="Self.Supply_Notice_Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supply_Notice">
+        <PropertyRef Name="SN_ID" />
+      </Principal>
+      <Dependent Role="Supply_Notice_Item">
+        <PropertyRef Name="SN_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Supply_No__Wh_Na__30F848ED">
+    <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Supply_Notice" Type="Self.Supply_Notice" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Warehouse">
+        <PropertyRef Name="Wh_Name" />
+      </Principal>
+      <Dependent Role="Supply_Notice">
+        <PropertyRef Name="Wh_Name" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transfer___From___71D1E811">
+    <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="1" />
+    <End Role="Transfer_Item" Type="Self.Transfer_Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Warehouse">
+        <PropertyRef Name="Wh_Name" />
+      </Principal>
+      <Dependent Role="Transfer_Item">
+        <PropertyRef Name="From_Wh_Name" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transfer___To_Wh__72C60C4A">
+    <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="1" />
+    <End Role="Transfer_Item" Type="Self.Transfer_Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Warehouse">
+        <PropertyRef Name="Wh_Name" />
+      </Principal>
+      <Dependent Role="Transfer_Item">
+        <PropertyRef Name="To_Wh_Name" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="Warehouse_Supplier">
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="*" />
+    <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="Trading_CompanyEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Clients" EntityType="Self.Client" />
+    <EntitySet Name="Exchange_Notice" EntityType="Self.Exchange_Notice" />
+    <EntitySet Name="Exchange_Notice_Item" EntityType="Self.Exchange_Notice_Item" />
+    <EntitySet Name="Items" EntityType="Self.Item" />
+    <EntitySet Name="Item_Unit" EntityType="Self.Item_Unit" />
+    <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
+    <EntitySet Name="Supply_Notice" EntityType="Self.Supply_Notice" />
+    <EntitySet Name="Supply_Notice_Item" EntityType="Self.Supply_Notice_Item" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Transfer_Item" EntityType="Self.Transfer_Item" />
+    <EntitySet Name="Warehouses" EntityType="Self.Warehouse" />
+    <AssociationSet Name="FK__Client__Wh_Name__2C3393D0" Association="Self.FK__Client__Wh_Name__2C3393D0">
+      <End Role="Warehouse" EntitySet="Warehouses" />
+      <End Role="Client" EntitySet="Clients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Exchange_Notice_Client" Association="Self.FK_Exchange_Notice_Client">
+      <End Role="Client" EntitySet="Clients" />
+      <End Role="Exchange_Notice" EntitySet="Exchange_Notice" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Exchange___EN_ID__5BE2A6F2" Association="Self.FK__Exchange___EN_ID__5BE2A6F2">
+      <End Role="Exchange_Notice" EntitySet="Exchange_Notice" />
+      <End Role="Exchange_Notice_Item" EntitySet="Exchange_Notice_Item" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Exchange___Wh_Na__38996AB5" Association="Self.FK__Exchange___Wh_Na__38996AB5">
+      <End Role="Warehouse" EntitySet="Warehouses" />
+      <End Role="Exchange_Notice" EntitySet="Exchange_Notice" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Exchange___It_Co__5CD6CB2B" Association="Self.FK__Exchange___It_Co__5CD6CB2B">
+      <End Role="Item" EntitySet="Items" />
+      <End Role="Exchange_Notice_Item" EntitySet="Exchange_Notice_Item" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Item__Wh_Name__267ABA7A" Association="Self.FK__Item__Wh_Name__267ABA7A">
+      <End Role="Warehouse" EntitySet="Warehouses" />
+      <End Role="Item" EntitySet="Items" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Item_Unit__It_Co__29572725" Association="Self.FK__Item_Unit__It_Co__29572725">
+      <End Role="Item" EntitySet="Items" />
+      <End Role="Item_Unit" EntitySet="Item_Unit" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Supply_No__It_Co__4E88ABD4" Association="Self.FK__Supply_No__It_Co__4E88ABD4">
+      <End Role="Item" EntitySet="Items" />
+      <End Role="Supply_Notice_Item" EntitySet="Supply_Notice_Item" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transfer___It_Co__73BA3083" Association="Self.FK__Transfer___It_Co__73BA3083">
+      <End Role="Item" EntitySet="Items" />
+      <End Role="Transfer_Item" EntitySet="Transfer_Item" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Supply_No__Suppl__31EC6D26" Association="Self.FK__Supply_No__Suppl__31EC6D26">
+      <End Role="Supplier" EntitySet="Suppliers" />
+      <End Role="Supply_Notice" EntitySet="Supply_Notice" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Supply_No__SN_ID__4D94879B" Association="Self.FK__Supply_No__SN_ID__4D94879B">
+      <End Role="Supply_Notice" EntitySet="Supply_Notice" />
+      <End Role="Supply_Notice_Item" EntitySet="Supply_Notice_Item" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Supply_No__Wh_Na__30F848ED" Association="Self.FK__Supply_No__Wh_Na__30F848ED">
+      <End Role="Warehouse" EntitySet="Warehouses" />
+      <End Role="Supply_Notice" EntitySet="Supply_Notice" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transfer___From___71D1E811" Association="Self.FK__Transfer___From___71D1E811">
+      <End Role="Warehouse" EntitySet="Warehouses" />
+      <End Role="Transfer_Item" EntitySet="Transfer_Item" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transfer___To_Wh__72C60C4A" Association="Self.FK__Transfer___To_Wh__72C60C4A">
+      <End Role="Warehouse" EntitySet="Warehouses" />
+      <End Role="Transfer_Item" EntitySet="Transfer_Item" />
+    </AssociationSet>
+    <AssociationSet Name="Warehouse_Supplier" Association="Self.Warehouse_Supplier">
+      <End Role="Supplier" EntitySet="Suppliers" />
+      <End Role="Warehouse" EntitySet="Warehouses" />
+    </AssociationSet>
+    <FunctionImport Name="InsertNewWH" ReturnType="Collection(Model.InsertNewWH_Result)">
+      <Parameter Name="Wh_Name" Mode="In" Type="String" />
+      <Parameter Name="Wh_Address" Mode="In" Type="String" />
+      <Parameter Name="Wh_Manager" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SelectAllWarehouses" ReturnType="Collection(Model.SelectAllWarehouses_Result)" />
+    <FunctionImport Name="SelectWarehouseByName" ReturnType="Collection(Model.SelectWarehouseByName_Result)">
+      <Parameter Name="Wh_Name" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(Model.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(Model.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="UpdateWH" ReturnType="Collection(String)">
+      <Parameter Name="Wh_Name" Mode="In" Type="String" />
+      <Parameter Name="New_Name" Mode="In" Type="String" />
+      <Parameter Name="Wh_Address" Mode="In" Type="String" />
+      <Parameter Name="Wh_Manager" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="InsertNewWH_Result">
+    <Property Type="String" Name="Wh_Name" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="Wh_Address" Nullable="false" MaxLength="300" />
+    <Property Type="String" Name="Wh_Manager" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="SelectAllWarehouses_Result">
+    <Property Type="String" Name="Wh_Name" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="Wh_Address" Nullable="false" MaxLength="300" />
+    <Property Type="String" Name="Wh_Manager" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="SelectWarehouseByName_Result">
+    <Property Type="String" Name="Wh_Name" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="Wh_Address" Nullable="false" MaxLength="300" />
+    <Property Type="String" Name="Wh_Manager" Nullable="false" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

@@ -1,0 +1,40 @@
+C:\Users\HP\Desktop\EF Project\Trading Company\Trading Company\bin\Debug\Trading Company.exe.config
+C:\Users\HP\Desktop\EF Project\Trading Company\Trading Company\bin\Debug\Trading Company.exe
+C:\Users\HP\Desktop\EF Project\Trading Company\Trading Company\bin\Debug\Trading Company.pdb
+C:\Users\HP\Desktop\EF Project\Trading Company\Trading Company\obj\Debug\Trading Company.csproj.AssemblyReference.cache
+C:\Users\HP\Desktop\EF Project\Trading Company\Trading Company\obj\Debug\Trading Company.csproj.SuggestedBindingRedirects.cache
+C:\Users\HP\Desktop\EF Project\Trading Company\Trading Company\obj\Debug\Trading_Company.Properties.Resources.resources
+C:\Users\HP\Desktop\EF Project\Trading Company\Trading Company\obj\Debug\Trading Company.csproj.GenerateResource.cache
+C:\Users\HP\Desktop\EF Project\Trading Company\Trading Company\obj\Debug\Trading Company.csproj.CoreCompileInputs.cache
+C:\Users\HP\Desktop\EF Project\Trading Company\Trading Company\obj\Debug\Trading Company.exe
+C:\Users\HP\Desktop\EF Project\Trading Company\Trading Company\obj\Debug\Trading Company.pdb
+C:\Users\HP\Desktop\EF Project\Trading Company\Trading Company\bin\Debug\EntityFramework.dll
+C:\Users\HP\Desktop\EF Project\Trading Company\Trading Company\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\HP\Desktop\EF Project\Trading Company\Trading Company\bin\Debug\EntityFramework.xml
+C:\Users\HP\Desktop\EF Project\Trading Company\Trading Company\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\HP\Desktop\EF Project\Trading Company\Trading Company\obj\Debug\Trading Company.csproj.CopyComplete
+C:\Users\HP\Desktop\EF Project\Trading Company\Trading Company\obj\Debug\Trading_Company.CompanyForm.resources
+C:\Users\HP\Desktop\EF Project\Trading Company\Trading Company\obj\Debug\Trading_Company.WarehouseEditForm.resources
+C:\Users\HP\Desktop\EF Project\Trading Company\Trading Company\obj\Debug\Trading_Company.ItemForm.resources
+C:\Users\HP\Desktop\EF Project\Trading Company\Trading Company\obj\Debug\Trading_Company.SupplierForm.resources
+C:\Users\HP\Desktop\EF Project\Trading Company\Trading Company\obj\Debug\Trading_Company.ClientForm.resources
+C:\Users\HP\Desktop\Trading Company\Trading Company\bin\Debug\Trading Company.exe.config
+C:\Users\HP\Desktop\Trading Company\Trading Company\bin\Debug\Trading Company.exe
+C:\Users\HP\Desktop\Trading Company\Trading Company\bin\Debug\Trading Company.pdb
+C:\Users\HP\Desktop\Trading Company\Trading Company\bin\Debug\EntityFramework.dll
+C:\Users\HP\Desktop\Trading Company\Trading Company\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\HP\Desktop\Trading Company\Trading Company\bin\Debug\EntityFramework.xml
+C:\Users\HP\Desktop\Trading Company\Trading Company\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\HP\Desktop\Trading Company\Trading Company\obj\Debug\Trading Company.csproj.AssemblyReference.cache
+C:\Users\HP\Desktop\Trading Company\Trading Company\obj\Debug\Trading Company.csproj.SuggestedBindingRedirects.cache
+C:\Users\HP\Desktop\Trading Company\Trading Company\obj\Debug\Trading_Company.ClientForm.resources
+C:\Users\HP\Desktop\Trading Company\Trading Company\obj\Debug\Trading_Company.CompanyForm.resources
+C:\Users\HP\Desktop\Trading Company\Trading Company\obj\Debug\Trading_Company.ItemForm.resources
+C:\Users\HP\Desktop\Trading Company\Trading Company\obj\Debug\Trading_Company.SupplierForm.resources
+C:\Users\HP\Desktop\Trading Company\Trading Company\obj\Debug\Trading_Company.WarehouseEditForm.resources
+C:\Users\HP\Desktop\Trading Company\Trading Company\obj\Debug\Trading_Company.Properties.Resources.resources
+C:\Users\HP\Desktop\Trading Company\Trading Company\obj\Debug\Trading Company.csproj.GenerateResource.cache
+C:\Users\HP\Desktop\Trading Company\Trading Company\obj\Debug\Trading Company.csproj.CoreCompileInputs.cache
+C:\Users\HP\Desktop\Trading Company\Trading Company\obj\Debug\Trading Company.csproj.CopyComplete
+C:\Users\HP\Desktop\Trading Company\Trading Company\obj\Debug\Trading Company.exe
+C:\Users\HP\Desktop\Trading Company\Trading Company\obj\Debug\Trading Company.pdb
